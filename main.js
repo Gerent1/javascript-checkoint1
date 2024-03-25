@@ -1,59 +1,82 @@
-//handdle fetching news
+// String Manipulation Functions:
+// Reverse a String
+function reverseString(str) {
+    return str.split('').reverse().join('');
+}
 
-const latestNews = [];
+console.log(reverseString('hello'));
 
-const fetchNews = async () => {
-    const  url = "https://google-news13.p.rapidapi.com/latest?lr=en-US";
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': 'a738fd29e5msh7cc49cf71c11a0cp13b0a2jsna7b4dad77741',
-            'X-RapidAPI-Host': 'google-news13.p.rapidapi.com'
+// Count Characters
+function countCharacters(str) {
+    return str.length;
+}
+
+console.log(countCharacters('hello'));
+
+// Capitalize Words
+function capitalizeWords(str) {
+    return str.replace(/\w\S*/g, function(word) {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+    });
+}
+
+console.log(capitalizeWords('hello world'));
+
+// Array Functions:
+
+// Find Maximum and Minimum
+function findMaxAndMin(arr) {
+    return [Math.max(...arr), Math.min(...arr)];
+}
+
+console.log(findMaxAndMin([1, 2, 3, 4, 5]));
+// Sum of Array
+function sumArray(arr) {
+    return arr.reduce((a, b) => a + b, 0);
+}
+
+console.log(sumArray, [1, 2, 3, 4, 5]);
+// Filter Array
+function filterArray(arr, condition) {
+    return arr.filter(condition);
+}
+
+console.log(filterArray([1, 2, 3, 4, 5], (num) => num % 2 === 0));
+// Mathematical Functions:
+
+// Factorial
+function factorial(num) {
+    if (num === 0 || num === 1) {
+        return 1;
+    } else {
+        return num * factorial(num - 1);
+    }
+}
+
+console.log(factorial(5));
+
+// Prime Number Check
+function isPrime(num) {
+    if (num <= 1) {
+        return false;
+    }
+    for (let i = 2; i < num; i++) {
+        if (num % i === 0) {
+            return false;
         }
     }
+    return true;
+}   
 
-    const response = await fetch(url, options);
-    const allNews = await response.json();
-    latestnews.push(allNews.items);    
-    // console.log(allNews);
-    return allNews.items;
+console.log(isPrime(5));
 
-}
-// fetchNews();
-
-const news =  fetchNews();
-cconst newsContainer = document.querySelector('all-news');
-
-news.forEach((newsItem) => {
-    const {title, publisher, timestamp, newsurl,  snippet, images } = newsItem;
-
-    const newsCard = document.createElement('div');
-    const pubEle = document.createElement('h2');
-    pubEle.innerHTML = publisher;
-
-
-    const newsImg = document.createElement('img');
-    newsImg.setAttribute('src', images.thumbnail);
-
-    const newsTitle = document.createElement('a');
-    titleEle.innerHTML = title;
-    titleEle.setAttribute('href', newsurl);
-
-    const newsSnippet = document.createElement('p');
-    newsSnippet.innerHTML = snippet;
-
-    newsCard.appendChild(pubEle);
-    newsCard.appendChild(newsImg);
-    newsCard.appendChild(titleEle);
-    newsCard.appendChild(newsSnippet);
-
-
-
-
-
-
-
-
-
-
+// Fibonacci Sequence
+function fibonacciSequence(numTerms) {
+    const sequence = [0, 1];
+    for (let i = 2; i < numTerms; i++) {
+        sequence.push(sequence[i - 1] + sequence[i - 2]);
     }
+    return sequence;
+}
+
+console.log(fibonacciSequence(10));
